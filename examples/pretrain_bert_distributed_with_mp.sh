@@ -17,12 +17,12 @@ DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $
 python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        pretrain_bert.py \
        --tensor-model-parallel-size 2 \
-       --pipeline-model-parallel-size 2 \
-       --num-layers 24 \
+       --pipeline-model-parallel-size 1 \
+       --num-layers 12 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --micro-batch-size 2 \
-       --global-batch-size 16 \
+       --micro-batch-size 32 \
+       --global-batch-size 128 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 1000000 \
